@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CameraActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.opencv.android.JavaCameraView
+            android:id="@+id/cam_view1"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true" />
+
+        <Button
+            android:id="@+id/normal_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@id/cam_view1"
+            android:text="make normal" />
+
+        <Button
+            android:id="@+id/canny_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/normal_mode"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@id/cam_view1"
+            android:text="make canny" />
+
+        <Button
+            android:id="@+id/gray_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/canny_mode"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@id/cam_view1"
+            android:text="make gray" />
+
+        <Button
+            android:id="@+id/dilate_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gray_mode"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@id/cam_view1"
+            android:text="make dilate" />
+
+        <Button
+            android:id="@+id/erose_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dilate_mode"
+            android:layout_margin="4dp"
+            android:layout_toRightOf="@id/cam_view1"
+            android:text="make erose" />
+
+        <Button
+            android:id="@+id/read_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cam_view1"
+            android:layout_margin="4dp"
+            android:text="read it!" />
+
+        <TextView
+            android:id="@+id/read_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/read_button"
+            android:layout_margin="4dp"
+            android:textSize="20sp"
+            tools:text="testtesttext" />
+
+    </RelativeLayout>
+</ScrollView>

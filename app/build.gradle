@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.android.opencvdemo"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets.main.jni.srcDirs = []
+
+
+    task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+        def ndkDir = "/home/soeren/Android/Sdk/ndk-bundle"
+        commandLine "$ndkDir/ndk-build",
+                'NDK_PROJECT_PATH=build/intermediates/ndk',
+                'NDK_LIBS_OUT=src/main/jniLibs',
+                'APP_BUILD_SCRIPT=src/main/jni/Android.mk',
+                'NDK_APPLICATION_MK=src/main/jni/Application.mk'
+    }
+
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn ndkBuild
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable = true
+            jniDebuggable true
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation project(':openCVLibrary342')
+    implementation 'com.rmtheis:tess-two:9.0.0'
+}
